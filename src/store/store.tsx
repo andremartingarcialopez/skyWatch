@@ -1,15 +1,36 @@
 import { create } from "zustand";
-import type { FormInputs } from "../types/types";
+import type { FormInputs, Weather } from "../types/types";
 import axios from "axios";
 import { SchemaWeather } from "../schemas/schemas";
+import { devtools } from "zustand/middleware";
 
+type WeatherStoreTypes = {
+    weatherData: Weather
+    fetchWeather: (formInputs: FormInputs) => Promise<void>
+}
 
-export const useWeatherStore = create(() => ({
+export const useWeatherStore = create<WeatherStoreTypes>()(
+    devtools((set) => ({
+        weatherData: {
+            name: "",
+            main: {
+                feels_like: 0,
+                temp_max: 0,
+                temp_min: 0,
+                temp: 0,
+                humidity: 0
+            }
+        },
+        fetchWeather: async (formInputs: FormInputs) => {
+            const result = await getWetaher(formInputs);
+            set((state) => ({
+                ...state,
+                weatherData: result
+            }))
 
-    fetchWeather: (formInputs: FormInputs) => {
-        getWetaher(formInputs)
-    }
-}));
+        }
+
+    })));
 
 async function getWetaher(formInputs: FormInputs) {
     const APIKEY = "9b9d4089a4b2135994fbd0220963ed41";
@@ -18,7 +39,7 @@ async function getWetaher(formInputs: FormInputs) {
         const { data } = await axios(url);
         const result = SchemaWeather.safeParse(data);
         if (result.success) {
-            console.log(result.data);
+            return result.data;
         }
 
     } catch (error) {

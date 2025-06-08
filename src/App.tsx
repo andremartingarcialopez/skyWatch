@@ -1,6 +1,11 @@
 import Form from "./components/Form"
+import WetaherInfo from "./components/WetaherInfo"
+import { useWeatherStore } from "./store/store"
 
 function App() {
+
+  const { weatherData } = useWeatherStore();
+
 
   return (
     <>
@@ -24,8 +29,12 @@ function App() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto max-w-5xl">
+      <div className="grid grid-cols-1 xl:grid-cols-2 mx-auto max-w-5xl">
         <Form />
+        {weatherData.name  &&
+          <WetaherInfo />
+        }
+
       </div>
     </>
   )
