@@ -7,25 +7,50 @@ import { devtools } from "zustand/middleware";
 type WeatherStoreTypes = {
     weatherData: Weather
     fetchWeather: (formInputs: FormInputs) => Promise<void>
+    spinner: boolean
+    notFound: boolean
+}
+
+const weatherDataInitialState = {
+    name: "",
+    main: {
+        feels_like: 0,
+        temp_max: 0,
+        temp_min: 0,
+        temp: 0,
+        humidity: 0
+    }
 }
 
 export const useWeatherStore = create<WeatherStoreTypes>()(
     devtools((set) => ({
-        weatherData: {
-            name: "",
-            main: {
-                feels_like: 0,
-                temp_max: 0,
-                temp_min: 0,
-                temp: 0,
-                humidity: 0
-            }
-        },
+        spinner: false,
+        notFound: false,
+        weatherData: weatherDataInitialState,
+
         fetchWeather: async (formInputs: FormInputs) => {
-            const result = await getWetaher(formInputs);
             set((state) => ({
                 ...state,
-                weatherData: result
+                spinner: true,
+                notFound: false,
+                weatherData: weatherDataInitialState
+
+            }))
+            const result = await getWetaher(formInputs);
+            console.log(result);
+            if (result == undefined) {
+                set(() => ({
+                    spinner: false,
+                    notFound: true,
+                }))
+                return;
+            }
+
+            set((state) => ({
+                ...state,
+                weatherData: result,
+                spinner: false,
+                notFound: false,
             }))
 
         }

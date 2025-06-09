@@ -31,7 +31,7 @@ export default function Form() {
         })
     }
     return (
-        <form onSubmit={handleSubmit} className="glass p-5 mt-10 m-2 flex flex-col justify-center items-stretch space-y-3">
+        <form onSubmit={handleSubmit} className="glass p-5 mt-10 m-2 flex flex-col justify-center items-stretch min-h-40 space-y-3">
             <div>
                 <label className="font-semibold text-gray-800" htmlFor="city">Ciudad</label>
                 <input className="w-full bg-white/50 rounded-lg px-1 py-1.5"
