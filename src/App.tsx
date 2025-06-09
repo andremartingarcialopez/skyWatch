@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <header className="p-5 glass-header flex justify-center items-center gap-0.5">
+      <header className="p-5 bg-white/10 shadow-white/50 shadow-lg backdrop-blur-xs border border-white/40 flex justify-center items-center gap-0.5">
         <h1 className="font-bold text-center text-4xl uppercase text-shadow-lg text-shadow-sky-700 text-white  ">Sky<span className="text-white">Watch</span></h1>
 
       </header>
