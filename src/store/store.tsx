@@ -3,6 +3,7 @@ import type { FormInputs, Weather } from "../types/types";
 import axios from "axios";
 import { SchemaWeather } from "../schemas/schemas";
 import { devtools } from "zustand/middleware";
+import { build } from "vite";
 
 type WeatherStoreTypes = {
     weatherData: Weather
@@ -58,7 +59,7 @@ export const useWeatherStore = create<WeatherStoreTypes>()(
     })));
 
 async function getWetaher(formInputs: FormInputs) {
-    const APIKEY = "9b9d4089a4b2135994fbd0220963ed41";
+    const APIKEY = import.meta.env.VITE_API_KEY;
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${formInputs.city},${formInputs.country}&appid=${APIKEY}`;
         const { data } = await axios(url);
