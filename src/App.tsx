@@ -25,7 +25,7 @@ function App() {
         }
         {notFound &&
           <ErrorMessage>
-            <div className='glass-extreme-hot mt-10 min-h-60 flex justify-center items-center m-2 '>
+            <div className='bg-red-700/10 shadow-red-700/50 shadow-lg backdrop-blur-xs border border-red-700/40 rounded-xl mt-10 min-h-60 flex justify-center items-center m-2 '>
               <p className='font-bold text-white text-2xl uppercase'>Ciudad no econtrada</p>
             </div>
           </ErrorMessage>

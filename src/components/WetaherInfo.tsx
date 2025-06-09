@@ -31,11 +31,11 @@ export default function WetaherInfo() {
             } */}
 
             <div className={clsx(
-                temp < 10 && 'glass-extreme-cold',
-                temp >= 10 && temp <= 17 && 'glass-cold',
-                temp > 17 && temp <= 24 && 'glass',
-                temp >= 25 && temp <= 30 && 'glass-hot',
-                temp > 30 && 'glass-extreme-hot',
+                temp < 10 && 'bg-blue-700/10 shadow-blue-700/50 shadow-lg backdrop-blur-xs border border-blue-700/40 rounded-xl',
+                temp >= 10 && temp <= 17 && 'bg-sky-600/10 shadow-sky-600/50 shadow-lg backdrop-blur-xs border border-sky-600/40 rounded-xl',
+                temp > 17 && temp <= 24 && 'bg-white/10 shadow-white/50 shadow-lg backdrop-blur-xs border border-white/40 rounded-xl',
+                temp >= 25 && temp <= 30 && 'bg-yellow-500/10 shadow-yellow-500/50 shadow-lg backdrop-blur-xs border border-yellow-500/40 rounded-xl',
+                temp > 30 && 'bg-red-600/10 shadow-red-bg-red-600/50 shadow-lg backdrop-blur-xs border border-red-600/40 rounded-xl',
                 'flex flex-col justify-center items-center space-y-4 p-5 m-2 mt-10 text-white text-shadow-md'
             )}>
                 <h2 className='text-center text-4xl'>{weatherData.name}</h2>
